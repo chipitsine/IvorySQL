@@ -457,7 +457,7 @@ do_compile(FunctionCallInfo fcinfo,
 				/* Disallow pseudotype argument */
 				/* (note we already replaced polymorphic types) */
 				/* (build_variable would do this, but wrong message) */
-				if (argdtype->ttype == PLISQL_TTYPE_PSEUDO)
+				if ((argdtype != NULL) && (argdtype->ttype == PLISQL_TTYPE_PSEUDO))
 					ereport(ERROR,
 							(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
 							 errmsg("PL/iSQL functions cannot accept type %s",
